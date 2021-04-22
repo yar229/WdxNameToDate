@@ -18,7 +18,9 @@ namespace WdxNameToDate
                 "zzz 12-04-2021 Thu test.zip",
                 "zzz 22.04.2021 Thu test.zip",
                 "zzz 12-04-2021 Thu test.zip",
-                "Monday, June 15, 2009"
+                "Monday, June 15, 2009",
+                "Mon, Jun 15, 2009",
+                "Jun 15, 2009"
             };
 
             foreach (string str in strs)

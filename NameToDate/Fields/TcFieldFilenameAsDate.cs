@@ -39,7 +39,7 @@ namespace YaR.TotalCommander.Wdx.NameToDate.Fields
             (@"(?<=\A|\s)\d{4}-\d{2}-\d{2}(?=\s|\Z|\.)", m => DateTime.Parse(m.Value)),
 
             //Monday, June 15, 2009
-            (@"(?snx-)(?<=\A|\s)(Monday|Mon|Tuesday|Tue|Wednesday|Wed|Thursday|Thu|Friday|Fri|Saturday|Sat|Sunday|Sun)(,\s*)? (January|Jan|March|Mar|May|July|Jul|June|Jun|August|Aug|Sep|SeptemberOctober|Oct|December|Dec) \s* \d{2} ,? \s* \d{4}(?=\s|\Z|\.)", m => DateTime.Parse(m.Value)),
+            (@"(?snx-)(?<=\A|\s)((Monday|Mon|Tuesday|Tue|Wednesday|Wed|Thursday|Thu|Friday|Fri|Saturday|Sat|Sunday|Sun)(,\s*)?)? (January|Jan|February|Feb|March|Mar|April|Apr|May|June|Jun|July|Jul|August|Aug|Sep|September|October|Oct|November|Nov|December|Dec) \s* \d{2} ,? \s* \d{4}(?=\s|\Z|\.)", m => DateTime.Parse(m.Value)),
 
             (@"\b(?:(?:31(\/|-| |\.)(?:0?[13578]|1[02]|(?:Jan|January|Mar|March|May|Jul|July|Aug|August|Oct|October|Dec|December)))\1|(?:(?:29|30)(\/|-| |\.)(?:0?[1,3-9]|1[0-2]|(?:Jan|January|Mar|March|Apr|April|May|Jun|June|Jul|July|Aug|August|Sep|September|Oct|October|Nov|November|Dec|December))\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})\b|\b(?:29(\/|-| |\.)(?:0?2|(?:Feb|February))\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))\b|\b(?:0?[1-9]|1\d|2[0-8])(\/|-| |\.)(?:(?:0?[1-9]|(?:Jan|January|Feb|February|Mar|March|Apr|April|May|Jun|June|Jul|July|Aug|August|Sep|September))|(?:1[0-2]|(?:Oct|October|Nov|November|Dec|December)))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})\b",
                 m => DateTime.Parse(m.Value))
