@@ -13,9 +13,11 @@ namespace YaR.TotalCommander.Wdx.NameToDate
             new TcFieldCreateDateTime(ContentFieldType.Date) { Name = "CreateDate" },
             new TcFieldCreateDateTime(ContentFieldType.Time) { Name = "CreateTime" },
             new TcFieldCreateDateTime(ContentFieldType.DateTime) { Name = "CreateDateTime" },
+
+            new TcFieldFilenameAsDate("yyyy-MM-dd") { Name = "2021-01-28" },
             new TcFieldFilenameAsDate("yyyy-MM-dd ddd") { Name = "2021-01-28 Wed" },
         };
-
+        
         private int FieldCount => Fields.Length;
 
 

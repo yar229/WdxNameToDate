@@ -2,8 +2,7 @@
 
 namespace YaR.TotalCommander.Wdx.NameToDate.Fields
 {
-
-    abstract class TcField
+    public abstract class TcField
     {
         public string Name { get; set; }
         public string Unit { get; set; } = "";

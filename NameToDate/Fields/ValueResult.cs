@@ -2,7 +2,7 @@
 
 namespace YaR.TotalCommander.Wdx.NameToDate.Fields
 {
-    class ValueResult
+    public class ValueResult
     {
         public GetValueResult Result { get; set; }
         public string Value { get;set; }
