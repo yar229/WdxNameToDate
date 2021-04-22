@@ -14,7 +14,7 @@ namespace YaR.TotalCommander.Wdx.NameToDate.Fields
 
         private readonly string _dateFormat;
 
-        public override ContentFieldType ContentType => ContentFieldType.String;
+        public override ContentFieldType ContentType => ContentFieldType.WideString;
 
         public string Test(string fileName)
         {
