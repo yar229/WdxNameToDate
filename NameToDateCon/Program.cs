@@ -23,7 +23,7 @@ namespace WdxNameToDate
             };
 
             foreach (string str in strs)
-                Console.WriteLine($"{str}\t\t{fld.Test(str)}");
+                Console.WriteLine($"{str}\t\t{fld.GetValue(str)}");
         }
     }
 }

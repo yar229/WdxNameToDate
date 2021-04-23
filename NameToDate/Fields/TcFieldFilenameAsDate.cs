@@ -16,7 +16,7 @@ namespace YaR.TotalCommander.Wdx.NameToDate.Fields
 
         public override ContentFieldType ContentType => ContentFieldType.WideString;
 
-        public string Test(string fileName)
+        public string GetValue(string fileName)
         {
             bool getaborted = false;
 
