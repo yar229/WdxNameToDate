@@ -1,12 +1,11 @@
 ﻿using System;
-using System.Text.RegularExpressions;
 using YaR.TotalCommander.Wdx.NameToDate.Fields;
 
 namespace WdxNameToDate
 {
-    class Program
+    internal class Program
     {
-        static void Main(string[] args)
+        private static void Main()
         {
 
             var fld = new TcFieldFilenameAsDate("yyyy-MM-dd ddd");

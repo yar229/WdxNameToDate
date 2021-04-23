@@ -7,7 +7,7 @@ namespace YaR.TotalCommander.Wdx.NameToDate.Fields
     {
         public static DateTime Parse(this Match m, string yearGroupName, string monthGroupName, string dayGroupName)
         {
-            return new DateTime(
+            return new (
                 int.Parse(m.Groups[yearGroupName].Value),
                 int.Parse(m.Groups[monthGroupName].Value),
                 int.Parse(m.Groups[dayGroupName].Value));

@@ -1,11 +1,12 @@
 ﻿using System.Globalization;
 using System.IO;
+using System.Linq;
 using System.Security;
 using TcPluginBase.Content;
 
 namespace YaR.TotalCommander.Wdx.NameToDate.Fields
 {
-    class TcFieldFileSize : TcField
+    internal class TcFieldFileSize : TcField
     {
         public TcFieldFileSize()
         {
@@ -23,7 +24,7 @@ namespace YaR.TotalCommander.Wdx.NameToDate.Fields
 
                 try 
                 {
-                    long size = GetDirectorySize(fileName, getAborted);
+                    long size = GetDirectorySize(fileName, ref getAborted);
                     return ValueResult.Success(GetSizeValue(size));
                 } catch (IOException) 
                 {
@@ -36,7 +37,7 @@ namespace YaR.TotalCommander.Wdx.NameToDate.Fields
             {
                 var info = new FileInfo(fileName);
                 return ValueResult.Success(GetSizeValue(info.Length));
-            };
+            }
 
             return new ValueResult { Result = GetValueResult.FileError, Value = string.Empty };
         }
@@ -48,33 +49,33 @@ namespace YaR.TotalCommander.Wdx.NameToDate.Fields
             string altStr = null;
             if (dSize > 1024.0) {
                 dSize /= 1024.0;
-                altStr = string.Format("|{0:0} Kb", dSize);
+                altStr = $"|{dSize:0} Kb";
             }
             if (dSize > 1024.0) {
                 dSize /= 1024.0;
-                altStr = string.Format("|{0:0} Mb", dSize);
+                altStr = $"|{dSize:0} Mb";
             }
             if (dSize > 1024.0) {
                 dSize /= 1024.0;
-                altStr = string.Format("|{0:0} Gb", dSize);
+                altStr = $"|{dSize:0} Gb";
             }
             if (!string.IsNullOrEmpty(altStr))
                 result += altStr;
             return result;
         }
 
-        private long GetDirectorySize(string dirPath, bool getAborted) 
+        private static long GetDirectorySize(string dirPath, ref bool getAborted) 
         {
             if (getAborted)
                 throw new IOException();
+
             long dirSize = 0;
             try 
             {
-                DirectoryInfo di = new DirectoryInfo(dirPath);
-                foreach (FileInfo fi in di.GetFiles())
-                    dirSize += fi.Length;
-                foreach (DirectoryInfo cd in di.GetDirectories())
-                    dirSize += GetDirectorySize(cd.FullName, getAborted);
+                var di = new DirectoryInfo(dirPath);
+                dirSize += di.GetFiles().Sum(fi => fi.Length);
+                foreach (var cd in di.GetDirectories())
+                    dirSize += GetDirectorySize(cd.FullName, ref getAborted);
             } 
             catch (SecurityException) 
             { 

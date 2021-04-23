@@ -3,7 +3,7 @@ using TcPluginBase.Content;
 
 namespace YaR.TotalCommander.Wdx.NameToDate.Fields
 {
-    class TcFieldFileType : TcField
+    internal class TcFieldFileType : TcField
     {
         public override ContentFieldType ContentType => ContentFieldType.WideString;
 
@@ -50,7 +50,7 @@ namespace YaR.TotalCommander.Wdx.NameToDate.Fields
                         break;
                 }
                 return ValueResult.Success(fileType);
-            };
+            }
 
             return new ValueResult { Result = GetValueResult.FileError, Value = string.Empty };
         }

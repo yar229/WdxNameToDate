@@ -4,6 +4,7 @@ using YaR.TotalCommander.Wdx.NameToDate.Fields;
 
 namespace YaR.TotalCommander.Wdx.NameToDate
 {
+    // ReSharper disable once UnusedMember.Global
     public class Content : ContentPlugin
     {
         private static readonly TcField[] Fields =
@@ -15,10 +16,10 @@ namespace YaR.TotalCommander.Wdx.NameToDate
             new TcFieldCreateDateTime(ContentFieldType.DateTime) { Name = "CreateDateTime" },
 
             new TcFieldFilenameAsDate("yyyy-MM-dd") { Name = "2021-01-28" },
-            new TcFieldFilenameAsDate("yyyy-MM-dd ddd") { Name = "2021-01-28 Wed" },
+            new TcFieldFilenameAsDate("yyyy-MM-dd ddd") { Name = "2021-01-28 Wed" }
         };
         
-        private int FieldCount => Fields.Length;
+        private static int FieldCount => Fields.Length;
 
 
         #region Constructors
@@ -58,13 +59,12 @@ namespace YaR.TotalCommander.Wdx.NameToDate
         public override GetValueResult GetValue(string fileName, int fieldIndex, int unitIndex,
                 int maxLen, GetValueFlags flags, out string fieldValue, out ContentFieldType fieldType) 
         {
-            getAborted = false;
-            GetValueResult result = GetValueResult.FieldEmpty;
+            _getAborted = false;
             fieldType = ContentFieldType.NoMoreFields;
             fieldValue = null;
 
             if (string.IsNullOrEmpty(fileName))
-                return result;
+                return GetValueResult.FieldEmpty;
 
             if (fieldIndex < 0 || fieldIndex > FieldCount - 1)
                 return GetValueResult.NoSuchField;
@@ -75,7 +75,7 @@ namespace YaR.TotalCommander.Wdx.NameToDate
 
             fieldType = field.ContentType;
 
-            var res = field.GetValue(fileName, flags, ref getAborted);
+            var res = field.GetValue(fileName, flags, ref _getAborted);
             fieldValue = res.Value;
             
             return res.Result;
@@ -86,7 +86,7 @@ namespace YaR.TotalCommander.Wdx.NameToDate
 
         public override void StopGetValue(string fileName) 
         {
-            getAborted = true;
+            _getAborted = true;
         }
 
         public override DefaultSortOrder GetDefaultSortOrder(int fieldIndex) 
@@ -164,7 +164,7 @@ namespace YaR.TotalCommander.Wdx.NameToDate
 
         #region Private Methods
 
-        private bool getAborted;
+        private bool _getAborted;
 
         //private static bool SetCombinedDateTime(ref DateTime newTime, DateTime currentTime,
         //        ContentFieldType fieldType, bool dateOnly) {

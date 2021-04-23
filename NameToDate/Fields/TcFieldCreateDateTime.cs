@@ -6,7 +6,7 @@ namespace YaR.TotalCommander.Wdx.NameToDate.Fields
 {
 
 
-    class TcFieldCreateDateTime : TcField
+    internal class TcFieldCreateDateTime : TcField
     {
         public TcFieldCreateDateTime(ContentFieldType mode)
         {
@@ -17,7 +17,7 @@ namespace YaR.TotalCommander.Wdx.NameToDate.Fields
                 ContentFieldType.Date => SupportedFieldOptions.SubstDate,
                 ContentFieldType.Time => SupportedFieldOptions.SubstTime,
                 ContentFieldType.DateTime => SupportedFieldOptions.SubstDateTime,
-                _ => throw new ArgumentException(message: "invalid enum value", paramName: nameof(_mode)),
+                _ => throw new ArgumentException("invalid enum value", paramName: nameof(_mode))
             };
             Options = SupportedFieldOptions.Edit | opt;
         }
@@ -40,7 +40,7 @@ namespace YaR.TotalCommander.Wdx.NameToDate.Fields
                 var info = new FileInfo(fileName);
                 string timeString = info.CreationTime.ToString("G");
                 return ValueResult.Success(timeString);
-            };
+            }
 
             return ValueResult.FileError();
         }

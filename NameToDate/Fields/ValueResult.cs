@@ -9,22 +9,22 @@ namespace YaR.TotalCommander.Wdx.NameToDate.Fields
 
         public static ValueResult Success(string value)
         {
-            return new ValueResult { Result = GetValueResult.Success, Value = value };
+            return new() { Result = GetValueResult.Success, Value = value };
         }
 
         public static ValueResult OnDemand(string value)
         {
-            return new ValueResult { Result = GetValueResult.OnDemand, Value = value };
+            return new() { Result = GetValueResult.OnDemand, Value = value };
         }
 
         public static ValueResult FieldEmpty()
         {
-            return new ValueResult { Result = GetValueResult.OnDemand, Value = string.Empty };
+            return new() { Result = GetValueResult.OnDemand, Value = string.Empty };
         }
 
         public static ValueResult FileError()
         {
-            return new ValueResult { Result = GetValueResult.FileError, Value = string.Empty };
+            return new() { Result = GetValueResult.FileError, Value = string.Empty };
         }
     }
 }
