@@ -1,4 +1,5 @@
-﻿using TcPluginBase;
+﻿using System.Globalization;
+using TcPluginBase;
 using TcPluginBase.Content;
 using YaR.TotalCommander.Wdx.NameToDate.Fields;
 
@@ -16,7 +17,8 @@ namespace YaR.TotalCommander.Wdx.NameToDate
             new TcFieldCreateDateTime(ContentFieldType.DateTime) { Name = "CreateDateTime" },
 
             new TcFieldFilenameAsDate("yyyy-MM-dd") { Name = "2021-01-28" },
-            new TcFieldFilenameAsDate("yyyy-MM-dd ddd") { Name = "2021-01-28 Wed" }
+            new TcFieldFilenameAsDate("yyyy-MM-dd ddd") { Name = "2021-01-28 Wed (system locale)" },
+            new TcFieldFilenameAsDate("yyyy-MM-dd ddd", CultureInfo.GetCultureInfo("en-GB")) { Name = "2021-01-28 Wed (En)"}
         };
         
         private static int FieldCount => Fields.Length;

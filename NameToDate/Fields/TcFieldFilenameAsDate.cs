@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.IO;
 using System.Text.RegularExpressions;
 using TcPluginBase.Content;
@@ -7,12 +8,14 @@ namespace YaR.TotalCommander.Wdx.NameToDate.Fields
 {
     public class TcFieldFilenameAsDate : TcField
     {
-        public TcFieldFilenameAsDate(string dateFormat)
+        public TcFieldFilenameAsDate(string dateFormat, CultureInfo cultureInfo = null)
         {
             _dateFormat = dateFormat;
+            _cultureInfo = cultureInfo ?? CultureInfo.CurrentCulture;
         }
 
         private readonly string _dateFormat;
+        private readonly CultureInfo _cultureInfo;
 
         public override ContentFieldType ContentType => ContentFieldType.WideString;
 
@@ -63,7 +66,7 @@ namespace YaR.TotalCommander.Wdx.NameToDate.Fields
                         
                         var date = _dateExpressions[ii].eval(match);
                         count++;
-                        return date.ToString(_dateFormat);
+                        return date.ToString(_dateFormat, _cultureInfo);
                     }
                     catch (Exception)
                     {
